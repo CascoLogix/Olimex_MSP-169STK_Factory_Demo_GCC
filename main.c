@@ -8,80 +8,80 @@
 #include <stdint.h>
 
 
-#define LED1_ON			P3OUT &= ~BIT6
-#define LED1_OFF		P3OUT |= BIT6
-#define LED2_ON			P3OUT &= ~BIT7
-#define LED2_OFF		P3OUT |= BIT7
-#define B1				BIT5&P1IN		//B1 - P1.5
-#define B2				BIT6&P1IN		//B2 - P1.6
-#define B3				BIT7&P1IN		//B3 - P1.7
-#define E_HIGH			P4OUT |= BIT1
-#define E_LOW			P4OUT &= ~BIT1
-#define RS_HIGH			P4OUT |= BIT3
-#define RS_LOW			P4OUT &= ~BIT3
-#define LCD_Data		P4OUT
-#define LCD_LIGHT_ON	P4OUT |= BIT0
-#define LCD_LIGHT_OFF	P4OUT &= ~BIT0
+#define LED1_ON			(P3OUT &= ~BIT6)
+#define LED1_OFF		(P3OUT |= BIT6)
+#define LED2_ON			(P3OUT &= ~BIT7)
+#define LED2_OFF		(P3OUT |= BIT7)
+#define B1				(BIT5 & P1IN)		//B1 - P1.5
+#define B2				(BIT6 & P1IN)		//B2 - P1.6
+#define B3				(BIT7 & P1IN)		//B3 - P1.7
+#define E_HIGH			(P4OUT |= BIT1)
+#define E_LOW			(P4OUT &= ~BIT1)
+#define RS_HIGH			(P4OUT |= BIT3)
+#define RS_LOW			(P4OUT &= ~BIT3)
+#define LCD_Data		(P4OUT)
+#define LCD_LIGHT_ON	(P4OUT |= BIT0)
+#define LCD_LIGHT_OFF	(P4OUT &= ~BIT0)
 
-#define INPUT			0
-#define OUTPUT			0xff
-#define ON				1
-#define OFF				0
-#define BUF_SIZE		25
+#define INPUT			(0)
+#define OUTPUT			(0xFF)
+#define ON				(1)
+#define OFF				(0)
+#define BUF_SIZE		(25)
 
-#define _100us			7				//7 cycles *12 + 20 = 104 / 104*1us = 104us
+#define _100us			(7)				//7 cycles *12 + 20 = 104 / 104*1us = 104us
 
 //LCD commands
-#define DISP_ON			0x0c			//LCD control constants
-#define DISP_OFF		0x08			//
-#define CLR_DISP		0x01			//
-#define CUR_HOME		0x02			//
-#define ENTRY_INC		0x06			//
-#define DD_RAM_ADDR		0x80			//
-#define DD_RAM_ADDR2	0xc0			//
-#define DD_RAM_ADDR3	0x28			//
-#define CG_RAM_ADDR		0x40			//
+#define DISP_ON			(0x0C)			//LCD control constants
+#define DISP_OFF		(0x08)			//
+#define CLR_DISP		(0x01)			//
+#define CUR_HOME		(0x02)			//
+#define ENTRY_INC		(0x06)			//
+#define LINE_1			(0x80)			//
+#define LINE_2			(0xC0)			//
+#define DD_RAM_ADDR3	(0x28)			//
+#define CG_RAM_ADDR		(0x40)			//
 
 //NAND FLASH
-#define MAX_BLOCK_NUMB	1024
+#define MAX_BLOCK_NUMB	(1024)
 
-#define TRANS_LDY		50
-#define WRITE_DLY		400
-#define ERASE_DLY		4000
+#define TRANS_LDY		(50)
+#define WRITE_DLY		(400)
+#define ERASE_DLY		(4000)
 
-#define OUT_PORT		P5OUT
-#define IN_PORT			P5IN
-#define IO_DIR			P5DIR
+#define OUT_PORT		(P5OUT)
+#define IN_PORT			(P5IN)
+#define IO_DIR			(P5DIR)
 
-#define _CE_ON			P2OUT &= ~BIT0
-#define _CE_OFF			P2OUT |= BIT0
-#define _RE_ON			P2OUT &= ~BIT1
-#define _RE_OFF			P2OUT |= BIT1
-#define _WE_ON			P2OUT &= ~BIT2
-#define _WE_OFF			P2OUT |= BIT2
+#define _CE_ON			(P2OUT &= ~BIT0)
+#define _CE_OFF			(P2OUT |= BIT0)
+#define _RE_ON			(P2OUT &= ~BIT1)
+#define _RE_OFF			(P2OUT |= BIT1)
+#define _WE_ON			(P2OUT &= ~BIT2)
+#define _WE_OFF			(P2OUT |= BIT2)
 
-#define ALE_ON			P2OUT |= BIT3
-#define ALE_OFF			P2OUT &= ~BIT3
-#define CLE_ON			P2OUT |= BIT4
-#define CLE_OFF			P2OUT &= ~BIT4
+#define ALE_ON			(P2OUT |= BIT3)
+#define ALE_OFF			(P2OUT &= ~BIT3)
+#define CLE_ON			(P2OUT |= BIT4)
+#define CLE_OFF			(P2OUT &= ~BIT4)
 
-#define R_B				P2IN & BIT7
-#define DALLAS			P2IN & BIT5
+#define R_B				(P2IN & BIT7)
+#define DALLAS			(P2IN & BIT5)
 
-#define READ_SPARE		0x50
-#define READ_0			0x00
-#define READ_1			0x01
-#define READ_STATUS		0x70
+#define READ_SPARE		(0x50)
+#define READ_0			(0x00)
+#define READ_1			(0x01)
+#define READ_STATUS		(0x70)
 
-#define WRITE_PAGE		0x80
-#define WRITE_AKN		0x10
+#define WRITE_PAGE		(0x80)
+#define WRITE_AKN		(0x10)
 
-#define ERASE_BLOCK		0x60
-#define	ERASE_AKN		0xD0
+#define ERASE_BLOCK		(0x60)
+#define	ERASE_AKN		(0xD0)
 
-#define DEV_ID			0x90
+#define DEV_ID			(0x90)
 
-#define SAMSUNG_ID		0xECE6
+#define SAMSUNG_ID		(0xECE6)
 
 
 uint8_t i;
@@ -101,7 +101,7 @@ const char PGM_SUCCESS_Message[] = " PGM SUCCESSFUL ";
 const char PGM_ERROR_Message[] = " PROGRAM ERROR  ";
 const char DALLAS_PRESENT_Message[] = " DALLAS PRESENT ";
 const char SAVE_RS232_Message[] = "SAVE RS232 SIGNS";
-const char DYSPLAY_RS232_Message[] = "DISPLAY to RS232";
+const char DISPLAY_RS232_Message[] = "DISPLAY to RS232";
 uint8_t WRITE_BUF [BUF_SIZE];
 uint8_t READ_BUF [BUF_SIZE];
 
@@ -120,10 +120,10 @@ void ADC_ini (void);
 void Get_ADC(uint8_t a);
 void Inactive_Flash(void);
 void Write_Data(uint8_t a);
-uint8_t Programm_Bytes(uint8_t COL_ADD,
-					   uint8_t ROW_ADDL,
-					   uint8_t ROW_ADDH,
-					   uint8_t NUMBER);
+uint8_t Program_Bytes(uint8_t COL_ADD,
+					  uint8_t ROW_ADDL,
+					  uint8_t ROW_ADDH,
+					  uint8_t NUMBER);
 uint8_t Read_Data(void);
 void Read_Bytes (uint8_t COL_ADD,
 				 uint8_t ROW_ADDL,
@@ -135,46 +135,46 @@ uint8_t Erase_Flash (uint8_t BLOCK_ADDL, uint8_t BLOCK_ADDH);
 
 void main(void)
 {
-	WDTCTL = WDTPW + WDTHOLD; // Stop watchdog timer
+	WDTCTL = WDTPW + WDTHOLD;		// Stop watchdog timer
 
-	BCSCTL1 &= ~BIT7;                //XT2-ON
-	BCSCTL2 |= BIT3;                 //XT2 is SMCLK
+	BCSCTL1 &= ~BIT7;				//XT2-ON
+	BCSCTL2 |= BIT3;				//XT2 is SMCLK
 
 	//hardware ini
 
-	P1DIR=BIT0;
+	P1DIR = BIT0;
 
 
-	P2OUT=0x07;               //NAND FLASH ini
-	P2DIR=0x1F;
+	P2OUT = 0x07;					//NAND FLASH ini
+	P2DIR = 0x1F;
 
-	P3OUT = BIT6 | BIT7;      //LED1
-	P3DIR = BIT6 | BIT7;      //LED2
+	P3OUT = BIT6 | BIT7;			//LED1
+	P3DIR = BIT6 | BIT7;			//LED2
 
-	P4OUT = 0;                //LCD ini
-	P4DIR = 0xff;
+	P4OUT = 0;						//LCD ini
+	P4DIR = 0xFF;
 
 	InitLCD();
 	InitUSART0();
 	DAC_ini();
 	ADC_ini();
 
-	count=0;
-	b1_flag=0;
-	b2_flag=0;
-	b3_flag=0;
-	dls_flag=0;
+	count = 0;
+	b1_flag = 0;
+	b2_flag = 0;
+	b3_flag = 0;
+	dls_flag = 0;
 
-	for (i=0; i!=32; i++)
+	for (i = 0; i != 32; i++)
 	{
 		SEND_CHAR(LCD_Message[i]);
-		if (i==15)
+		if (i == 15)
 		{
-			SEND_CMD (DD_RAM_ADDR2);
+			SEND_CMD(LINE_2);
 		}
 	}
 
-	SEND_CMD(DD_RAM_ADDR);
+	SEND_CMD(LINE_1);
 
 	/*
 	while(1)
@@ -194,81 +194,81 @@ void main(void)
 	}
 	*/
 
-	while(1)                   //Repeat forever
+	while(1)									//Repeat forever
 	{
 		//----------BUTON 1 -------------------------------------------------------------------
-		if ((B1) == 0 && b1_flag == 0)          //if B1 pressed
+		if ((B1 == 0) && (b1_flag == 0))		//if B1 pressed
 		{
 			Delay(255);
-			b1_flag=1;
+			b1_flag = 1;
 			LED1_ON;
 
 			SEND_CMD(CLR_DISP);
-			SEND_CMD(DD_RAM_ADDR);
-			for (i=0; i!=16; i++)
+			SEND_CMD(LINE_1);
+			for (i = 0; i != 16; i++)
 			{
 				SEND_CHAR(SAVE_RS232_Message[i]);
 			}
 		}
 
-		if ((B1) != 0 && b1_flag != 0)          //if B1 released
+		if ((B1 != 0) && (b1_flag != 0))		//if B1 released
 		{
 			Delay(255);
-			b1_flag=0;
+			b1_flag = 0;
 			LED1_OFF;
 			SEND_CMD(CLR_DISP);
-			SEND_CMD(DD_RAM_ADDR);
-			for (i=0; i!=16; i++)
+			SEND_CMD(LINE_1);
+			for (i = 0; i != 16; i++)
 			{
-				SEND_CHAR(DYSPLAY_RS232_Message[i]);
+				SEND_CHAR(DISPLAY_RS232_Message[i]);
 			}
 
-			Read_Bytes(0,0,0,BUF_SIZE);             //read from FLASH
-			for (i=0; i != BUF_SIZE; i++)           //send to RS232
+			Read_Bytes(0,0,0,BUF_SIZE);			//read from FLASH
+			for (i = 0; i != BUF_SIZE; i++)		//send to RS232
 			{
-				temp=READ_BUF[i];
+				temp = READ_BUF[i];
 				UART_transmit(temp);
 			}
 		}
 
 		//----------BUTON 2 -------------------------------------------------------------------
-		if ((B2) == 0 && b2_flag==0)                //if B2 is pressed
+		if ((B2 == 0) && (b2_flag == 0))		//if B2 is pressed
 		{
 			Delay(255);
 			b2_flag = 1;
 			LCD_LIGHT_ON;
 
-			if ((Erase_Flash(0,0) & BIT0) == 0)    //if erase flash is successful
+			if ((Erase_Flash(0,0) & BIT0) == 0)	//if erase flash is successful
 			{
 				SEND_CMD(CLR_DISP);
-				SEND_CMD (DD_RAM_ADDR);
-				for (i=0; i != 16; i++)
+				SEND_CMD(LINE_1);
+				for (i = 0; i != 16; i++)
 				{
 					SEND_CHAR(ERASE_SUCCESS_Message[i]);
 				}
 			}
-			else                                  //if erase flash is unsuccessful
+			else								//if erase flash is unsuccessful
 			{
 				SEND_CMD(CLR_DISP);
-				SEND_CMD (DD_RAM_ADDR);
-				for (i=0; i != 16; i++)
+				SEND_CMD(LINE_1);
+				for (i = 0; i != 16; i++)
 				{
 					SEND_CHAR(ERASE_ERR_Message[i]);
 				}
 			}
 		}
 
-		if ((B2) != 0 && b2_flag != 0)            //if B2 is released
+		if ((B2 != 0) && (b2_flag != 0))		//if B2 is released
 		{
 			Delay(255);
 			b2_flag = 0;
 			LCD_LIGHT_OFF;
 
-			if ((Programm_Bytes(0,0,0,BUF_SIZE) & BIT0) == 0)    //if program flash is successful
+			if ((Program_Bytes(0,0,0,BUF_SIZE) & BIT0) == 0)    //if program flash is successful
 			{
 				SEND_CMD(CLR_DISP);
-				SEND_CMD (DD_RAM_ADDR);
-				for (i=0; i != 16; i++)
+				SEND_CMD(LINE_1);
+				for (i = 0; i != 16; i++)
 				{
 					SEND_CHAR(PGM_SUCCESS_Message[i]);
 				}
@@ -276,8 +276,8 @@ void main(void)
 			else                                                 //if program flash is unsuccessful
 			{
 				SEND_CMD(CLR_DISP);
-				SEND_CMD (DD_RAM_ADDR);
-				for (i=0; i != 16; i++)
+				SEND_CMD(LINE_1);
+				for (i = 0; i != 16; i++)
 				{
 					SEND_CHAR(PGM_ERROR_Message[i]);
 				}
@@ -285,58 +285,57 @@ void main(void)
 		}
 
 		//----------BUTON 3 -------------------------------------------------------------------
-		if ((B3) == 0)
+		if (B3 == 0)
 		{
-			Get_ADC(INCH_2);                 //LINE_IN_L
-			DAC12_0DAT=ADC12MEM0;
+			Get_ADC(INCH_2);					// LINE_IN_L
+			DAC12_0DAT = ADC12MEM0;				// Put ADC into DAC
 
-			Get_ADC(INCH_3);                 //LINE_IN_R
-			DAC12_1DAT=ADC12MEM0;
+			Get_ADC(INCH_3);					// LINE_IN_R
+			DAC12_1DAT = ADC12MEM0;				// Put ADC into DAC
 			LED2_ON;
 		}
 		else
 		{
 			LED2_OFF;
-			Get_ADC(INCH_0);                //MIC_L
-			DAC12_0DAT=ADC12MEM0;
+			Get_ADC(INCH_0);					// MIC_L
+			DAC12_0DAT = ADC12MEM0;				// Put ADC into DAC
 
 			//        Get_ADC(INCH_0);
-			Get_ADC(INCH_1);                //MIC_R
-			DAC12_1DAT=ADC12MEM0;
+			Get_ADC(INCH_1);					// MIC_R
+			DAC12_1DAT = ADC12MEM0;				// Put ADC into DAC
 		}
 
 		//-----------DALLAS test (Erase flash)----------------------------------
-		if ((DALLAS) == 0  && dls_flag==0)
+		if ((DALLAS == 0)  && (dls_flag == 0))
 		{
 			Delay(255);
-			dls_flag=1;
+			dls_flag = 1;
 			SEND_CMD(CLR_DISP);
-			SEND_CMD (DD_RAM_ADDR2);
-			for (i=0; i != 16; i++)
+			SEND_CMD(LINE_2);
+			for (i = 0; i != 16; i++)
 			{
 				SEND_CHAR(DALLAS_PRESENT_Message[i]);
 			}
 		}
-		if ((DALLAS) != 0  && dls_flag != 0)
+		if ((DALLAS != 0) && (dls_flag != 0))
 		{
 			Delay(255);
-			dls_flag=0;
+			dls_flag = 0;
 		}
 	}
 }
 
 
 //---Functions difinitions------------------
-void Delay (uint16_t a)
+void Delay (volatile uint16_t a)
 {
-	for (a; a != 0; a--);                      //20+a*12 cycles (for 1MHz)
+	for (; a > 0; a--);                      //20+a*12 cycles (for 1MHz)
 }
 
 
-void Delayx100us(uint8_t b)
+void Delayx100us(volatile uint8_t b)
 {
-	uint8_t j;
-	for (j = 0; j != b; ++j)
+	for (; b > 0; b--)
 	{
 		Delay(_100us);
 	}
@@ -346,8 +345,8 @@ void Delayx100us(uint8_t b)
 void _E(void)
 {
 	E_HIGH;		    //toggle E for LCD
-	_NOP();
-	_NOP();
+	volatile uint8_t dly;
+	for(dly = 10; dly > 0; dly--);
 	E_LOW;
 }
 
@@ -406,7 +405,7 @@ void InitLCD(void)
 
     SEND_CMD(DISP_ON);
     SEND_CMD(CLR_DISP);
-    SEND_CMD(DD_RAM_ADDR);
+    SEND_CMD(LINE_1);
 }
 
 
@@ -444,14 +443,14 @@ __interrupt void usart0_rx (void)
 	_NOP();
 	while ((IFG1 & UTXIFG0) == 0);	// USART0 TX buffer ready?
 	t = RXBUF0;
-	TXBUF0 = t+1;					// echo+1
+	TXBUF0 = t + 1;					// echo+1
 
 	if ((B1) == 0)					//if B1 is pressed full buffer
 	{
 		WRITE_BUF[count++] = t;
-		if (count > BUF_SIZE-1)
+		if (count > (BUF_SIZE - 1))
 		{
-			count=0;
+			count = 0;
 		}
 	}
 }
@@ -459,7 +458,6 @@ __interrupt void usart0_rx (void)
 
 void UART_transmit (char Transmit_Data)	//UART1 Transmit Subroutine
 {
-	i=i;
 	while ((IFG1 & UTXIFG0) == 0);	//USART0 TX buffer ready?
 	TXBUF0 = Transmit_Data;			//send data
 }
@@ -500,20 +498,20 @@ void Get_ADC(uint8_t a)
 //-----------------NAND FLASH---------------------------
 void Inactive_Flash(void)			//pull flash pins to inactive condition
 {
-	IO_DIR=INPUT;         			//IO is inputs
-	_CE_OFF;              			//=1
-	_RE_OFF;              			//=1
-	_WE_OFF;              			//=1
-	ALE_OFF;              			//=0
-	CLE_OFF;              			//=0
+	IO_DIR = INPUT;					//IO is inputs
+	_CE_OFF;						//=1
+	_RE_OFF;						//=1
+	_WE_OFF;						//=1
+	ALE_OFF;						//=0
+	CLE_OFF;						//=0
 }
 
 
 void Write_Data(uint8_t a)
 {
-	IO_DIR=OUTPUT;					//IO is outputs
+	IO_DIR = OUTPUT;				//IO is outputs
 	_WE_ON;
-	OUT_PORT=a;
+	OUT_PORT = a;
 	_WE_OFF;						//latch data
 }
 
@@ -521,15 +519,15 @@ void Write_Data(uint8_t a)
 uint8_t Read_Data(void)
 {
 	unsigned char f;
-	IO_DIR=INPUT;					//IO is inputs
+	IO_DIR = INPUT;					//IO is inputs
 	_RE_ON;
-	f=IN_PORT;
+	f = IN_PORT;
 	_RE_OFF;						//read data
 	return (f);
 }
 
 
-uint8_t Programm_Bytes(uint8_t COL_ADD,
+uint8_t Program_Bytes(uint8_t COL_ADD,
 					   uint8_t ROW_ADDL,
 					   uint8_t ROW_ADDH,
 					   uint8_t NUMBER)
